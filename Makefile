@@ -1,4 +1,7 @@
 BINARY_NAME=grpc-server
+PB_REL="https://github.com/protocolbuffers/protobuf/releases"
+PB_VER="3.20.1"
+export PATH:=${PATH}:${HOME}/.local/bin
 
 all: protoc build
 
@@ -12,3 +15,8 @@ protoc:
 	protoc --go_out=. --go_opt=paths=source_relative \
 		--go-grpc_out=. --go-grpc_opt=paths=source_relative \
 		api/grpc/*/*/*.proto
+
+tools:
+	curl -LO ${PB_REL}/download/v${PB_VER}/protoc-${PB_VER}-linux-x86_64.zip
+	unzip protoc-${PB_VER}-linux-x86_64.zip -d ${HOME}/.local
+	rm protoc-${PB_VER}-linux-x86_64.zip

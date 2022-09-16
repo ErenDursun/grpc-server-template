@@ -1,6 +1,6 @@
 BINARY_NAME=grpc-server
 PB_REL="https://github.com/protocolbuffers/protobuf/releases"
-PB_VER="3.20.1"
+PB_VER="3.20.2"
 export PATH:=${PATH}:${HOME}/.local/bin
 
 all: protoc build

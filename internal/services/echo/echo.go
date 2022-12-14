@@ -1,4 +1,4 @@
-package server
+package echo_service
 
 import (
 	"context"
@@ -8,11 +8,11 @@ import (
 	"github.com/ErenDursun/grpc-server-template/internal/auth"
 )
 
-type echoServer struct {
+type EchoServer struct {
 	echo.UnimplementedEchoServer
 }
 
-func (s *echoServer) Echo(ctx context.Context, in *echo.EchoRequest) (*echo.EchoResponse, error) {
+func (s *EchoServer) Echo(ctx context.Context, in *echo.EchoRequest) (*echo.EchoResponse, error) {
 	if claims := auth.GetClaims(ctx); claims != nil {
 		fmt.Printf("echo from authorized user '%v'\n", claims.Name)
 	} else {

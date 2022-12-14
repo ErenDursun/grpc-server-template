@@ -1,4 +1,4 @@
-package server
+package health_service
 
 import (
 	"context"
@@ -6,10 +6,10 @@ import (
 	"github.com/ErenDursun/grpc-server-template/api/grpc/health/v1"
 )
 
-type healthServer struct {
+type HealthServer struct {
 	health.UnimplementedHealthServer
 }
 
-func (s *healthServer) Check(ctx context.Context, in *health.HealthCheckRequest) (*health.HealthCheckResponse, error) {
+func (s *HealthServer) Check(ctx context.Context, in *health.HealthCheckRequest) (*health.HealthCheckResponse, error) {
 	return &health.HealthCheckResponse{Status: health.HealthCheckResponse_UNKNOWN}, nil
 }

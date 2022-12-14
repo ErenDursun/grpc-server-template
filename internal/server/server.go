@@ -6,9 +6,6 @@ import (
 	"log"
 	"net"
 
-	"github.com/ErenDursun/grpc-server-template/api/grpc/echo/v1"
-	"github.com/ErenDursun/grpc-server-template/api/grpc/health/v1"
-	"github.com/ErenDursun/grpc-server-template/internal/auth"
 	grpc_middleware "github.com/grpc-ecosystem/go-grpc-middleware"
 	grpc_auth "github.com/grpc-ecosystem/go-grpc-middleware/auth"
 	grpc_jwt "github.com/grpc-ecosystem/go-grpc-middleware/auth/jwt"
@@ -16,6 +13,12 @@ import (
 	grpc_ctxtags "github.com/grpc-ecosystem/go-grpc-middleware/tags"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
+
+	"github.com/ErenDursun/grpc-server-template/api/grpc/echo/v1"
+	"github.com/ErenDursun/grpc-server-template/api/grpc/health/v1"
+	"github.com/ErenDursun/grpc-server-template/internal/auth"
+	echo_service "github.com/ErenDursun/grpc-server-template/internal/services/echo"
+	health_service "github.com/ErenDursun/grpc-server-template/internal/services/health"
 )
 
 var (
@@ -50,8 +53,8 @@ func NewServer() {
 		),
 	)
 	reflection.Register(s)
-	health.RegisterHealthServer(s, &healthServer{})
-	echo.RegisterEchoServer(s, &echoServer{})
+	health.RegisterHealthServer(s, &health_service.HealthServer{})
+	echo.RegisterEchoServer(s, &echo_service.EchoServer{})
 	log.Printf("server listening at %v", lis.Addr())
 	if err := s.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %v", err)

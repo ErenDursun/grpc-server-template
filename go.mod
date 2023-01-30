@@ -7,8 +7,7 @@ replace github.com/grpc-ecosystem/go-grpc-middleware => github.com/ErenDursun/go
 require (
 	github.com/golang-jwt/jwt/v4 v4.4.3
 	github.com/grpc-ecosystem/go-grpc-middleware v1.3.0
-	google.golang.org/grpc v1.51.0
-	google.golang.org/protobuf v1.28.1
+	google.golang.org/grpc v1.52.3
 )
 
 require (
@@ -18,4 +17,5 @@ require (
 	golang.org/x/sys v0.3.0 // indirect
 	golang.org/x/text v0.5.0 // indirect
 	google.golang.org/genproto v0.0.0-20221207170731-23e4bf6bdc37 // indirect
+	google.golang.org/protobuf v1.28.1 // indirect
 )

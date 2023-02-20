@@ -5,7 +5,7 @@ go 1.18
 replace github.com/grpc-ecosystem/go-grpc-middleware => github.com/ErenDursun/go-grpc-middleware v0.0.0-20221214210458-593df4cfde10
 
 require (
-	github.com/golang-jwt/jwt/v4 v4.4.3
+	github.com/golang-jwt/jwt/v4 v4.5.0
 	github.com/grpc-ecosystem/go-grpc-middleware v1.3.0
 	google.golang.org/grpc v1.53.0
 )

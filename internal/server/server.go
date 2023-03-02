@@ -1,14 +1,16 @@
 package server
 
 import (
+	"context"
 	"flag"
 	"fmt"
 	"log"
 	"net"
 
+	grpc_jwt "github.com/ErenDursun/go-grpc-jwt-middleware/jwt"
+	"github.com/golang-jwt/jwt/v4"
 	grpc_middleware "github.com/grpc-ecosystem/go-grpc-middleware"
 	grpc_auth "github.com/grpc-ecosystem/go-grpc-middleware/auth"
-	grpc_jwt "github.com/grpc-ecosystem/go-grpc-middleware/auth/jwt"
 	grpc_recovery "github.com/grpc-ecosystem/go-grpc-middleware/recovery"
 	grpc_ctxtags "github.com/grpc-ecosystem/go-grpc-middleware/tags"
 	"google.golang.org/grpc"
@@ -31,23 +33,25 @@ func NewServer() {
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
 	}
-	jwtConfig := grpc_jwt.JWTConfig{
+	jwtConfig := grpc_jwt.Config{
 		SigningKey: []byte("my_secret_key"),
-		Claims:     &auth.GrpcServerClaims{},
+		NewClaimsFunc: func(c context.Context) jwt.Claims {
+			return &auth.GrpcServerClaims{}
+		},
 	}
-	authInterceptor := grpc_jwt.NewAuthFuncWithConfig(jwtConfig)
+	authFunc := grpc_jwt.NewAuthFuncWithConfig(jwtConfig)
 	s := grpc.NewServer(
 		grpc.StreamInterceptor(
 			grpc_middleware.ChainStreamServer(
 				grpc_ctxtags.StreamServerInterceptor(),
-				grpc_auth.StreamServerInterceptor(authInterceptor),
+				grpc_auth.StreamServerInterceptor(authFunc),
 				grpc_recovery.StreamServerInterceptor(),
 			),
 		),
 		grpc.UnaryInterceptor(
 			grpc_middleware.ChainUnaryServer(
 				grpc_ctxtags.UnaryServerInterceptor(),
-				grpc_auth.UnaryServerInterceptor(authInterceptor),
+				grpc_auth.UnaryServerInterceptor(authFunc),
 				grpc_recovery.UnaryServerInterceptor(),
 			),
 		),

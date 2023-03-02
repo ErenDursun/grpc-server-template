@@ -3,8 +3,8 @@ package auth
 import (
 	"context"
 
+	grpc_jwt "github.com/ErenDursun/go-grpc-jwt-middleware/jwt"
 	"github.com/golang-jwt/jwt/v4"
-	grpc_auth "github.com/grpc-ecosystem/go-grpc-middleware/auth/jwt"
 )
 
 type GrpcServerClaims struct {
@@ -13,7 +13,7 @@ type GrpcServerClaims struct {
 }
 
 func GetClaims(ctx context.Context) *GrpcServerClaims {
-	token, ok := ctx.Value(grpc_auth.DefaultJWTConfig.ContextKey).(*jwt.Token)
+	token, ok := ctx.Value(grpc_jwt.DefaultContextKey).(*jwt.Token)
 	if !ok {
 		return nil
 	}

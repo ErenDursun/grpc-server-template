@@ -1,4 +1,4 @@
-api/**/*.go
+api/grpc/*/*/*.go
 bin/
 
 # Binaries for programs and plugins

@@ -4,12 +4,12 @@ import (
 	"context"
 
 	grpc_jwt "github.com/ErenDursun/go-grpc-jwt-middleware/jwt"
-	"github.com/golang-jwt/jwt/v4"
+	"github.com/golang-jwt/jwt/v5"
 )
 
 type GrpcServerClaims struct {
 	Name string `json:"name"`
-	jwt.StandardClaims
+	jwt.RegisteredClaims
 }
 
 func GetClaims(ctx context.Context) *GrpcServerClaims {

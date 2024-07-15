@@ -1,8 +1,4 @@
 BINARY_NAME=grpc-server
-PB_VER="24.4"
-PB_ZIP=protoc-${PB_VER}-linux-x86_64.zip
-PB_REL="https://github.com/protocolbuffers/protobuf/releases/download/v${PB_VER}/${PB_ZIP}"
-export PATH:=${PATH}:${HOME}/.local/bin
 
 all: generate build
 
@@ -15,9 +11,6 @@ generate:
 	go generate ./...
 
 tools:
-	curl -LO ${PB_REL}
-	unzip -o ${PB_ZIP} -d ${HOME}/.local bin/protoc
-	unzip -o ${PB_ZIP} -d ${HOME}/.local 'include/*'
-	rm ${PB_ZIP}
-	go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.31
-	go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.3
+	curl -fsS https://pkgx.sh | sh
+	go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.34.2
+	go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.4

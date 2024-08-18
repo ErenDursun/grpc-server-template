@@ -1,9 +1,9 @@
 module github.com/ErenDursun/grpc-server-template
 
-go 1.22
+go 1.23
 
 require (
-	github.com/ErenDursun/go-grpc-jwt-middleware v0.3.1
+	github.com/ErenDursun/go-grpc-jwt-middleware v0.3.2
 	github.com/golang-jwt/jwt/v5 v5.2.1
 	github.com/grpc-ecosystem/go-grpc-middleware v1.4.0
 	github.com/grpc-ecosystem/go-grpc-middleware/v2 v2.1.0

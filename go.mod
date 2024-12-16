@@ -6,7 +6,7 @@ require (
 	github.com/ErenDursun/go-grpc-jwt-middleware v0.3.2
 	github.com/golang-jwt/jwt/v5 v5.2.1
 	github.com/grpc-ecosystem/go-grpc-middleware v1.4.0
-	github.com/grpc-ecosystem/go-grpc-middleware/v2 v2.1.0
+	github.com/grpc-ecosystem/go-grpc-middleware/v2 v2.2.0
 	google.golang.org/grpc v1.68.1
 )
 

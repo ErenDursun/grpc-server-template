@@ -8,7 +8,6 @@ require (
 	github.com/grpc-ecosystem/go-grpc-middleware v1.4.0
 	github.com/grpc-ecosystem/go-grpc-middleware/v2 v2.2.0
 	google.golang.org/grpc v1.69.2
-	google.golang.org/protobuf v1.36.0
 )
 
 require (
@@ -17,4 +16,5 @@ require (
 	golang.org/x/sys v0.28.0 // indirect
 	golang.org/x/text v0.21.0 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20241219192143-6b3ec007d9bb // indirect
+	google.golang.org/protobuf v1.36.1 // indirect
 )

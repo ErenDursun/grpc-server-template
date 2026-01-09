@@ -9,10 +9,8 @@ import (
 
 	grpc_jwt "github.com/ErenDursun/go-grpc-jwt-middleware/jwt"
 	"github.com/golang-jwt/jwt/v5"
-	grpc_middleware "github.com/grpc-ecosystem/go-grpc-middleware"
-	grpc_recovery "github.com/grpc-ecosystem/go-grpc-middleware/recovery"
-	grpc_ctxtags "github.com/grpc-ecosystem/go-grpc-middleware/tags"
 	grpc_auth "github.com/grpc-ecosystem/go-grpc-middleware/v2/interceptors/auth"
+	grpc_recovery "github.com/grpc-ecosystem/go-grpc-middleware/v2/interceptors/recovery"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 
@@ -41,19 +39,13 @@ func NewServer() {
 	}
 	authFunc := grpc_jwt.NewAuthFuncWithConfig(jwtConfig)
 	s := grpc.NewServer(
-		grpc.StreamInterceptor(
-			grpc_middleware.ChainStreamServer(
-				grpc_ctxtags.StreamServerInterceptor(),
-				grpc_auth.StreamServerInterceptor(authFunc),
-				grpc_recovery.StreamServerInterceptor(),
-			),
+		grpc.ChainStreamInterceptor(
+			grpc_auth.StreamServerInterceptor(authFunc),
+			grpc_recovery.StreamServerInterceptor(),
 		),
-		grpc.UnaryInterceptor(
-			grpc_middleware.ChainUnaryServer(
-				grpc_ctxtags.UnaryServerInterceptor(),
-				grpc_auth.UnaryServerInterceptor(authFunc),
-				grpc_recovery.UnaryServerInterceptor(),
-			),
+		grpc.ChainUnaryInterceptor(
+			grpc_auth.UnaryServerInterceptor(authFunc),
+			grpc_recovery.UnaryServerInterceptor(),
 		),
 	)
 	reflection.Register(s)

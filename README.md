@@ -2,6 +2,6 @@
 
 ## How to Use
 
-* `make tools` to install tools (based on [pkgx](https://pkgx.sh/))
+* `make tools` to install tools
 * `make generate` to auto-generate Go code for gRPC
 * `make` to build binaries

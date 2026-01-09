@@ -11,7 +11,6 @@ generate:
 	go generate ./api/generate.go
 
 tools:
-	curl -fsS https://pkgx.sh | sh
 	go install github.com/bufbuild/buf/cmd/buf@latest
 	go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
 	go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest

@@ -1,4 +1,5 @@
-api/grpc/*/*/*.go
+.github/prompts/
+api/gen/
 bin/
 
 # Binaries for programs and plugins

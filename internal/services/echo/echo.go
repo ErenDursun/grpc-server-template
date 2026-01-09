@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/ErenDursun/grpc-server-template/api/grpc/echo/v1"
+	echo "github.com/ErenDursun/grpc-server-template/api/gen/proto/echo/v1"
 	"github.com/ErenDursun/grpc-server-template/internal/auth"
 )
 

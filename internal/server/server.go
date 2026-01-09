@@ -16,8 +16,8 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 
-	"github.com/ErenDursun/grpc-server-template/api/grpc/echo/v1"
-	"github.com/ErenDursun/grpc-server-template/api/grpc/health/v1"
+	echo "github.com/ErenDursun/grpc-server-template/api/gen/proto/echo/v1"
+	health "github.com/ErenDursun/grpc-server-template/api/gen/proto/health/v1"
 	"github.com/ErenDursun/grpc-server-template/internal/auth"
 	echo_service "github.com/ErenDursun/grpc-server-template/internal/services/echo"
 	health_service "github.com/ErenDursun/grpc-server-template/internal/services/health"

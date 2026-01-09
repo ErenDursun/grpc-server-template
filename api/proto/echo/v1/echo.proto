@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package grpc.echo.v1;
+package echo.v1;
 
-option go_package = "./echo";
+option go_package = "./echoV1";
 
 message EchoRequest {
   string message = 1;

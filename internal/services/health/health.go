@@ -3,7 +3,7 @@ package health_service
 import (
 	"context"
 
-	"github.com/ErenDursun/grpc-server-template/api/grpc/health/v1"
+	health "github.com/ErenDursun/grpc-server-template/api/gen/proto/health/v1"
 )
 
 type HealthServer struct {
